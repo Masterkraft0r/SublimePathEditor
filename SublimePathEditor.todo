@@ -2,4 +2,4 @@ load_path:
  ✔ stop it from opening multiple instances of %Test% @done (14-11-16 10:57)
 
 write_path:
- ☐ get it to actually write to %Test%
+ ✔ get it to actually write to %Test% @done (14-11-16 22:35)

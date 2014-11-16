@@ -3,7 +3,7 @@ import subprocess
 
 import sublime, sublime_plugin
 
-VAR = 'Test'
+VAR = 'PATH'
 
 class LoadPathCommand(sublime_plugin.TextCommand):
   '''Load PATH-Variable in a new view.'''
@@ -32,7 +32,7 @@ class WritePathCommand(sublime_plugin.TextCommand):
 
     PATH = path_view.substr(sublime.Region(0, path_view.size())).replace('\n', ';')
     #subprocess.call(["start", "SublimePathEditor.bat", VAR, PATH])
-    subprocess.call(['start', 'setx', '/m', VAR, PATH])
+    subprocess.call(['setx', '/m', VAR, PATH])
     os.environ[VAR] = PATH
     path_view.close()
 
