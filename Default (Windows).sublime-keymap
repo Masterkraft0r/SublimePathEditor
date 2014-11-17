@@ -1,0 +1,10 @@
+[
+  {
+    "keys": ["alt+p", "alt+l"],
+    "command": "load_path"
+  },
+  {
+    "keys": ["alt+p", "alt+w"],
+    "command": "write_path"
+  }
+]

@@ -17,7 +17,8 @@ class LoadPathCommand(sublime_plugin.TextCommand):
     path_view = current_window.new_file()
     path_view.set_scratch(True)
     path_view.set_name('PATH (SublimePathEditor)')
-    PATH = os.environ[VAR].replace(';', '\n')
+    path_list = os.environ[VAR].split(';')
+    PATH = "\n".join([x for x in path_list if x.find(os.environ['HOME']) == -1])
     path_view.insert(edit, 0, PATH)
 
 class WritePathCommand(sublime_plugin.TextCommand):
@@ -31,13 +32,12 @@ class WritePathCommand(sublime_plugin.TextCommand):
       return None
 
     PATH = path_view.substr(sublime.Region(0, path_view.size())).replace('\n', ';')
-    #subprocess.call(["start", "SublimePathEditor.bat", VAR, PATH])
     subprocess.call(['setx', '/m', VAR, PATH])
     os.environ[VAR] = PATH
     path_view.close()
 
 def path_opened(current_window, title):
-  '''Check if title'''
+  '''Check if title is view in current window.'''
   views = current_window.views()
   for v in views:
     if v.name() == title:
